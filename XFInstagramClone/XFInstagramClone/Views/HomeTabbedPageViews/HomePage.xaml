@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             mc:Ignorable="d"
+             x:Class="XFInstagramClone.Views.HomeTabbedPageViews.HomePage">
+    <ContentPage.IconImageSource>
+        <FontImageSource Glyph="&#xf015;" FontFamily="{StaticResource FontAwesomeSolid}"/>
+    </ContentPage.IconImageSource>
+
+
+    <StackLayout>
+        <ListView x:Name="listPosts"
+                  ItemsSource="{Binding .}"
+                  HasUnevenRows="True"
+                  VerticalScrollBarVisibility="Never"
+                  SeparatorVisibility="None">
+
+            <ListView.Header>
+                <StackLayout Orientation="Horizontal"
+                             Margin="10">
+                    <StackLayout>
+                        <ff:CachedImage Source="ebubekir.jpg"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        WidthRequest="50"
+                                        HeightRequest="50">
+                            <ff:CachedImage.Transformations>
+                                <ffTransformations:RoundedTransformation Radius="240"/>
+                            </ff:CachedImage.Transformations>
+                        </ff:CachedImage>
+                        <Label Text="Hikayen"
+                               TextColor="Gray"
+                               FontSize="Small"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <CollectionView x:Name="collectionStories"
+                                    ItemsSource="{Binding .}"
+                                    HeightRequest="75"
+                                    HorizontalScrollBarVisibility="Never"
+                                    ItemsLayout="HorizontalList">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Margin="5,0,5,0">
+                                    <ff:CachedImage Source="{Binding ProfilePicture}"
+                                                    WidthRequest="50"
+                                                    HeightRequest="50"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center">
+                                        <ff:CachedImage.Transformations>
+                                            <ffTransformations:RoundedTransformation Radius="240" BorderHexColor="#F77737"/>
+                                        </ff:CachedImage.Transformations>
+                                    </ff:CachedImage>
+                                    <Label Text="{Binding Username}"
+                                           TextColor="Gray"
+                                           FontSize="Small"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                </StackLayout>
+            </ListView.Header>
+            
+            
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+                            <!--Post Title-->
+                            <StackLayout Orientation="Horizontal"
+                                         Margin="10"
+                                         Grid.Row="0">
+                                <ff:CachedImage Source="{Binding ProfilePicture}"
+                                                WidthRequest="35"
+                                                HeightRequest="35"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Start"
+                                                Aspect="AspectFit">
+                                    <ff:CachedImage.Transformations>
+                                        <ffTransformations:RoundedTransformation Radius="240"/>
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
+                                <Label Text="{Binding Username}"
+                                       TextColor="Black"
+                                       FontSize="Small"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand"/>
+                                <Label Text="&#xf141;"
+                                       FontFamily="{StaticResource FontAwesomeSolid}"
+                                       TextColor="Gray"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End"/>
+                            </StackLayout>
+                            <!--Post Image-->
+                            <ff:CachedImage Source="{Binding PostImage}"
+                                            VerticalOptions="Fill"
+                                            HorizontalOptions="Fill"
+                                            Aspect="AspectFill"
+                                            Grid.Row="1"/>
+                            <!--Post Details-->
+                            <StackLayout Grid.Row="2"
+                                         Margin="10">
+                                <!--Post Reactions-->
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="&#xf004;"
+                                           FontFamily="{StaticResource FontAwesomeRegular}"
+                                           FontSize="Medium"
+                                           TextColor="Black"/>
+                                    <Label Text="&#xf075;"
+                                           FontFamily="{StaticResource FontAwesomeRegular}"
+                                           FontSize="Medium"
+                                           TextColor="Black"/>
+                                    <Label Text="&#xf124;"
+                                           FontFamily="{StaticResource FontAwesomeSolid}"
+                                           FontSize="Medium"
+                                           TextColor="Black"
+                                           HorizontalOptions="StartAndExpand"/>
+                                    <Label Text="&#xf02e;"
+                                           FontFamily="{StaticResource FontAwesomeRegular}"
+                                           FontSize="Medium"
+                                           TextColor="Black"
+                                           HorizontalOptions="End"/>
+                                </StackLayout>
+                                <!--Post Like Count-->
+                                <Label VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       TextColor="Black"
+                                       FontAttributes="Bold">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding PostLikeCount}"/>
+                                            <Span Text=" beğenme"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <!--Post Detail-->
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Username}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding PostDetail}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           TextColor="Black"/>
+                                </StackLayout>
+                                
+                                <!--Comment Count-->
+                                <Label VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       TextColor="Gray">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding PostCommentCount}"/>
+                                            <Span Text=" yorumun tümünü gör"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                
+                                <!--Add comment-->
+                                <StackLayout Orientation="Horizontal">
+                                    <ff:CachedImage Source="ebubekir.jpg"
+                                                    WidthRequest="25"
+                                                    HeightRequest="25"
+                                                    Aspect="AspectFit">
+                                        <ff:CachedImage.Transformations>
+                                            <ffTransformations:RoundedTransformation Radius="240"/>
+                                        </ff:CachedImage.Transformations>
+                                    </ff:CachedImage>
+                                    <Label Text="Yorum ekle..."
+                                          TextColor="Gray"
+                                          VerticalOptions="Center"
+                                          HorizontalOptions="StartAndExpand"/>
+                                    <Label Text="&#xf004;"
+                                           FontFamily="{StaticResource FontAwesomeSolid}"
+                                           TextColor="Red"
+                                           FontSize="Small"/>
+                                    <Label Text="&#xf95e;"
+                                           FontFamily="{StaticResource FontAwesomeSolid}"
+                                           TextColor="Yellow"
+                                           FontAttributes="Bold"
+                                           FontSize="Small"/>
+                                    <Label Text="&#xf0fe;"
+                                           FontFamily="{StaticResource FontAwesomeRegular}"
+                                           TextColor="LightGray"
+                                           FontSize="Small"/>
+                                </StackLayout>
+                                <!--Publish Time-->
+                                <Label VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       FontSize="Small"
+                                       TextColor="Gray">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding PostTime}"/>
+                                            <Span Text=" saat önce"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+    
+</ContentPage>
