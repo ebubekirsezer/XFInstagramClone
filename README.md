@@ -7,7 +7,7 @@ Instagram UI clone using the Xamarin.Forms
 
 Xamarin Instagram iOS            |  Xamarin Instagram Droid
 :-------------------------:|:-------------------------:
-![Xamarin Instagram iOS](images/xf_instagram_iOS.png) | ![Xamarin Instagram Droid] (images/xf_instagram_droid.PNG) 
+![Xamarin Instagram iOS](images/xf_instagram_iOS.png) | ![Xamarin Instagram Droid](images/xf_instagram_droid.PNG) 
 
 
 
